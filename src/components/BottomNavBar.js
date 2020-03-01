@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { BottomNavigation, Text } from 'react-native-paper';
+import StandingsList from "./StandingsList";
 
-const StandingsRoute = () => <Text>Standings</Text>;
+const StandingsRoute = () => <StandingsList />;
 const MatchesRoute = () => <Text>Matches</Text>;
 const AboutRoute = () => <Text>About the creator Liquipedia RL is the data source</Text>;
 
@@ -10,7 +11,7 @@ export default class BottomNavBar extends React.Component {
         index: 0,
         routes: [
             { key: 'standings', title: 'Standings', icon: 'podium' },
-            { key: 'matches', title: 'Matches', icon: 'home' },
+            { key: 'matches', title: 'Matches', icon: 'soccer' },
             { key: 'about', title: 'About', icon: 'information' },
         ],
     };
