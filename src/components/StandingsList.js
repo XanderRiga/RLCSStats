@@ -1,12 +1,28 @@
 import * as React from 'react';
-import { List } from 'react-native-paper';
+import { DataTable } from 'react-native-paper';
 
-const StandingsList = () => (
-    <List.Item
-        title="First Item"
-        description="Item description"
-        left={props => <List.Icon {...props} icon="folder" />}
-    />
-);
+export default class StandingsList extends React.Component {
+    render() {
+        return (
+            <DataTable>
+                <DataTable.Header>
+                    <DataTable.Title>Team</DataTable.Title>
+                    <DataTable.Title>Match Record</DataTable.Title>
+                    <DataTable.Title>Game Record</DataTable.Title>
+                    <DataTable.Title>Game +/-</DataTable.Title>
+                </DataTable.Header>
 
-export default StandingsList;
+                {this.props.rows.map(item => {
+                    return (
+                        <DataTable.Row>
+                            <DataTable.Cell>{item.name}</DataTable.Cell>
+                            <DataTable.Cell>{item.matchRecord}</DataTable.Cell>
+                            <DataTable.Cell>{item.gameRecord}</DataTable.Cell>
+                            <DataTable.Cell>{item.plusMinus}</DataTable.Cell>
+                        </DataTable.Row>
+                    )
+                })}
+            </DataTable>
+        );
+    }
+}
