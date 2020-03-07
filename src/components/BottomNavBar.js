@@ -1,28 +1,12 @@
 import * as React from 'react';
 import { BottomNavigation, Text } from 'react-native-paper';
 import StandingsList from "./StandingsList";
-import { retrieveNaStandings } from "../lib/RetrieveStandings"
 
-const StandingsRoute = () => <StandingsList rows={rows}/>;
+const naRlcsSeason9 = 'https://liquipedia.net/rocketleague/api.php?action=parse&format=json&pageid=81053&prop=text&section=10';
+
+const StandingsRoute = () => <StandingsList url={naRlcsSeason9}/>;
 const MatchesRoute = () => <Text>Matches</Text>;
-const AboutRoute = () => <Text>About the creator Liquipedia RL is the data source</Text>;
-
-    const rows = retrieveNaStandings();
-
-// const rows = [
-//     {
-//         name: 'G2 Esports',
-//         matchRecord: '4-0',
-//         gameRecord: '12-3',
-//         plusMinus: '+9'
-//     },
-//     {
-//         name: 'NRG Esports',
-//         matchRecord: '4-1',
-//         gameRecord: '14-7',
-//         plusMinus: '+7'
-//     },
-// ];
+const AboutRoute = () => <Text>All of the data used in this application is provided by Liquipedia RL</Text>;
 
 export default class BottomNavBar extends React.Component {
     state = {

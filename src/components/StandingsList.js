@@ -1,7 +1,21 @@
 import * as React from 'react';
-import { DataTable } from 'react-native-paper';
+import {DataTable, Text} from 'react-native-paper';
+import { retrieveNaStandings } from "../lib/RetrieveStandings"
 
 export default class StandingsList extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            rows: null
+        }
+    }
+
+    async componentDidMount() {
+        const response = await retrieveNaStandings(this.props.url)
+        this.setState({rows: response});
+    }
+
     render() {
         return (
             <DataTable>
@@ -12,16 +26,20 @@ export default class StandingsList extends React.Component {
                     <DataTable.Title>Game +/-</DataTable.Title>
                 </DataTable.Header>
 
-                {this.props.rows.map(item => {
-                    return (
-                        <DataTable.Row>
+                {
+                    this.state.rows ?
+                    this.state.rows.map(item => {
+                        return (
+                            <DataTable.Row>
                             <DataTable.Cell>{item.name}</DataTable.Cell>
                             <DataTable.Cell>{item.matchRecord}</DataTable.Cell>
                             <DataTable.Cell>{item.gameRecord}</DataTable.Cell>
                             <DataTable.Cell>{item.plusMinus}</DataTable.Cell>
-                        </DataTable.Row>
-                    )
-                })}
+                            </DataTable.Row>
+                        )
+                    }) :
+                        <Text>Loading...</Text>
+                }
             </DataTable>
         );
     }
